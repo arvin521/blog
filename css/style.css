@@ -1,0 +1,60 @@
+/* 开始：设置默认样式 */
+
+body{
+    background-color: #FBFBFB;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style-type: none;
+}
+input,img{
+    border: none;
+}
+/* 结束：设置默认样式 */
+
+/* 头部开始 */
+
+#header{
+    position: relative;
+    width: 1200px;
+    height: 102px;
+    /* border: 1px solid red; */
+    margin: 0 auto; /*居中*/
+}
+/* logo 开始 */
+#header .logo a{
+    position: absolute;
+    top: 28px;
+    left: 2px;
+    display: block;
+    width: 163px;
+    height: 47;
+    /* border: 1px solid blue; */
+    background: url(../images/jt.png) 0 -41px no-repeat;
+}
+/* logo 结束 */
+
+/* flash 开始 */
+#header .flash_pic{
+    position: absolute;
+    left: 165px;
+    top: 7px;
+    width: 130px;
+    height: 80px;
+}
+/* flash 结束 */
+#header .search{
+    width: 357px;
+    height: 40px;
+    border: 1px solid red;
+}
+/* 搜索框开始 */
+/* 搜索框结束 */
+
+/* 头部结束 */
