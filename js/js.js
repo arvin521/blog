@@ -9,4 +9,11 @@ $(function(){
     $('.search_text').blur(function(){
         $(this).removeClass('blue').addClasss('search_text');
     })
+
+    // 右边头部隐藏盒子效果
+    $('.user_r').hover(function(){
+        $('.hidden_r').show();
+    }, function(){
+        $('.hidden_r').hide();
+    })
 })
