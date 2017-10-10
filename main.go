@@ -8,6 +8,30 @@ import (
 	"strings"
 )
 
+func main() {
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	http.HandleFunc("/login", login)         //设置访问的路由
+	http.HandleFunc("/", NotFoundHandler)       //设置访问的路由
+	
+	err := http.ListenAndServe(":3389", nil) //设置监听的端口
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+}
+
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+    if r.URL.Path == "/" {
+        http.Redirect(w, r, "/login", http.StatusFound)
+    }
+     
+    t, err := template.ParseFiles("template/404.html")
+    if (err != nil) {
+        log.Println(err)
+    }
+    t.Execute(w, nil)
+}
+
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
 	//注意:如果没有调用ParseForm方法，下面无法获取表单的数据
@@ -32,16 +56,5 @@ func login(w http.ResponseWriter, r *http.Request) {
 		//请求的是登陆数据，那么执行登陆的逻辑判断
 		fmt.Println("username:", r.Form["username"])
 		fmt.Println("password:", r.Form["password"])
-	}
-}
-
-func main() {
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-
-	http.HandleFunc("/", sayhelloName)       //设置访问的路由
-	http.HandleFunc("/login", login)         //设置访问的路由
-	err := http.ListenAndServe(":3389", nil) //设置监听的端口
-	if err != nil {
-		log.Fatal("ListenAndServe: ", err)
 	}
 }
