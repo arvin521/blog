@@ -1,13 +1,31 @@
-<html>
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-<title></title>
-<link rel="stylesheet" href="/static/css/style.css" />
+<meta charset="utf-8">
+<title>Paper Stack</title>
+<link rel="stylesheet" type="text/css" href="/static/css/login.css" />
 </head>
 <body>
-<form action="/login" method="post">
-    用户名:<input type="text" name="username">
-    密码:<input type="password" name="password">
-    <input type="submit" value="登陆">
-</form>
+<div class="container">
+	<section id="content">
+		<form action="">
+			<h1>登录</h1>
+			<div>
+				<input type="text" placeholder="用户名" required="" id="username" />
+			</div>
+			<div>
+				<input type="password" placeholder="密码" required="" id="password" />
+			</div>
+			<div>
+				<input type="submit" value="确定" />
+				<a href="#">忘记密码?</a>
+				<a href="#">注册</a>
+			</div>
+		</form><!-- form -->
+	</section><!-- content -->
+</div><!-- container -->
 </body>
 </html>
