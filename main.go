@@ -24,12 +24,18 @@ func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
     if r.URL.Path == "/" {
         http.Redirect(w, r, "/login", http.StatusFound)
     }
-     
+
     t, err := template.ParseFiles("template/404.html")
     if (err != nil) {
         log.Println(err)
-    }
-    t.Execute(w, nil)
+	}
+	type errType struct {
+		ErrorType int
+	}
+
+	tmp := errType{ErrorType : 404}
+    // t.Execute(w, nil)
+    t.Execute(w, tmp)
 }
 
 func sayhelloName(w http.ResponseWriter, r *http.Request) {
