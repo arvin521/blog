@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -12,7 +11,7 @@ func main() {
 
 	//设置访问的路由
 	http.HandleFunc("/", index)
-	http.HandleFunc("/login", login)
+	// http.HandleFunc("/login", login)
 
 	//设置监听的端口
 	err := http.ListenAndServe(":3389", nil)
@@ -23,23 +22,16 @@ func main() {
 
 //------------------ 开始：路由函数 ------------------
 
-func login(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("method:", r.Method) //获取请求的方法
-	if r.Method == "GET" {
-		t, _ := template.ParseFiles("template/login.html")
-		t.Execute(w, nil)
-	} else {
-		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
-		//请求的是登陆数据，那么执行登陆的逻辑判断
-		fmt.Println("username:", r.Form["username"])
-		fmt.Println("password:", r.Form["password"])
-	}
-}
-
 func index(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/" {
-		t, _ := template.ParseFiles("template/index.html")
-		t.Execute(w, nil)
+		param := struct {
+			Title string
+		}{
+			Title: "Arvin",
+		}
+
+		t, _ := template.ParseFiles("template/index.html", "template/base.html")
+		t.Execute(w, param)
 	}
 
 	t, err := template.ParseFiles("template/404.html")
@@ -56,6 +48,19 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 //------------------ 结束：路由函数 ------------------
+
+// func login(w http.ResponseWriter, r *http.Request) {
+// 	fmt.Println("method:", r.Method) //获取请求的方法
+// 	if r.Method == "GET" {
+// 		t, _ := template.ParseFiles("template/login.html")
+// 		t.Execute(w, nil)
+// 	} else {
+// 		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
+// 		//请求的是登陆数据，那么执行登陆的逻辑判断
+// 		fmt.Println("username:", r.Form["username"])
+// 		fmt.Println("password:", r.Form["password"])
+// 	}
+// }
 
 // func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 // 	if r.URL.Path == "/" {

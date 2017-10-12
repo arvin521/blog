@@ -1,4 +1,5 @@
 @charset "utf-8";
+
 /* 共用css */
 * { margin: 0; padding: 0 }
 body { font: 12px/1.5 'Microsoft Yahei', 'Simsun'; color: #666666; background: #fff }
@@ -14,9 +15,10 @@ a:hover { text-decoration: none; }
 .f_r { float: right }
 .l_box { width: 670px; }
 .r_box { width: 300px; }
+
 /* 头部信息 */
 header { width: 1000px; margin: 20px auto; overflow: hidden; clear: both; }
-#topnav { width: 60%; background: #48AE15; height: 46px; line-height: 46px; text-align: center; border-radius: 46px; }
+#topnav { width: 60%; background: rgb(83, 109, 69); height: 46px; line-height: 46px; text-align: center; border-radius: 46px; }
 #topnav a { display: inline-block; font-size: 18px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; padding: 0 20px; }
 #topnav a:hover { background: #fff; color: #000; }
 #topnav a { color: #FFF }
@@ -27,6 +29,7 @@ article { width: 1000px; margin: 20px auto; }
 footer { background: #333; width: 100%; clear: both; text-align: center; }
 .ft-copyright { color: #fff; line-height: 24px; }
 .ft-list { background: url(../images/ft-wx-s.png) no-repeat right; height: 100px }
+
 /*返回顶部*/
 *html { background-image: url(about:blank); background-attachment: fixed; }/*解决IE6下滚动抖动的问题*/
 #tbox { width: 54px; float: right; position: fixed; right: 50px; bottom: 15px; _position: absolute; _bottom: auto; _top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
@@ -35,6 +38,7 @@ _margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
 #togbook { margin: 5px 0; background-position: 10px -36px; }
 #gotop { background-position: 12px 10px; }
 #togbook:hover, #gotop:hover { opacity: 0.5 }
+
 /*标签云*/
 .cloud { width: 100%; clear: both; overflow: hidden }
 .cloud h3 { line-height: 40px; color: #38485A; font-size: 18px; border-bottom: 1px solid #E6E6E6; height: 40px; }
@@ -52,6 +56,7 @@ _margin-bottom: 15px; }/*解决IE6下不兼容 position:fixed 的问题*/
 .cloud ul li:first-child { background: #036564 }
 .cloud ul li:last-child { background: #3299BB }
 .cloud ul li:hover { border-radius: 0; text-shadow: #000 1px 1px 1px }
+
 /* 切换卡 */
 .moreSelect { width: 100%; margin: 30px 0 20px 0; overflow: hidden }
 .ms-top { height: 32px; border-bottom: solid 1px #EAEAEA; font-size: 14px }
