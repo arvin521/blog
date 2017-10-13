@@ -30,21 +30,22 @@ func index(w http.ResponseWriter, r *http.Request) {
 			Title: "Arvin",
 		}
 
-		t, _ := template.ParseFiles("template/index.html", "template/base.html")
+		//t, _ := template.ParseFiles("template/index.html", "template/base.html")
+		t, _ := template.ParseFiles("template/index.html")
 		t.Execute(w, param)
+	} else {
+		t, err := template.ParseFiles("template/404.html")
+		if err != nil {
+			log.Println(err)
+		}
+	
+		type errType struct {
+			ErrorType int
+		}
+		tmp := errType{ErrorType: 404}
+		// t.Execute(w, nil)
+		t.Execute(w, tmp)
 	}
-
-	t, err := template.ParseFiles("template/404.html")
-	if err != nil {
-		log.Println(err)
-	}
-
-	type errType struct {
-		ErrorType int
-	}
-	tmp := errType{ErrorType: 404}
-	// t.Execute(w, nil)
-	t.Execute(w, tmp)
 }
 
 //------------------ 结束：路由函数 ------------------
