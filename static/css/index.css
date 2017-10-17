@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/* 第一层div */
+header, article, footer{
+    position: relative;
+    width: 90%;
+    display: block;
+    margin:0 auto;
+    overflow:hidden;
+    border: 1px solid red;
+}
+
+header{
+    _height:10%; 
+    min-height:10%;
+    max-height: 10%;
+}
+
+article{
+    _height:30%; 
+    min-height:30%;
+    max-height: 70%;   
+}
+
+footer{
+    _height:10%; 
+    min-height:10%;
+    max-height: 20%;
+
+    position:absolute;
+    bottom:5%;
+
+    /* position:absolute下属性居中 */
+    left: 50%;
+    margin-left: -45%;
+
+    text-align: center;
+
+    border: 1px solid red;
+}
+
+/* article内div */
+#news{
+    position: relative;
+    width: 30%;
+    border: 1px solid blue;
+}
+
+#info{
+    position: relative;
+    width: 40%;
+    border: 1px solid green;
+}
+
+#hot{
+    position: relative;
+    width: 30%;
+    border: 1px solid yellow;
+}
+
+/* footer内div */

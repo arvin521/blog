@@ -2,7 +2,9 @@
 <html lang="zh-CN">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="Cache-Control" content="no-transform" /> 
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=1.0"/>
 
     <title>{{.Title}}</title>    
 
@@ -10,13 +12,60 @@
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/index.css">
+
+    <style type="text/css"> 
+        /* 在屏幕宽度小于960px的时候执行的样式 */
+        @media(max-width:960px)
+        {
+            /* 网页全屏显示 */
+            /* body {width:100%;}  */
+
+            /* 正文全屏显示 */
+            /* #divMain{width:100%}  */
+
+            /* 为了避免正文图片超出屏幕宽度 */
+            /* 正文图片宽度最多是屏幕宽度的90% */
+            /* #divMain img{max-width:90%}  */
+
+            /* 隐藏头部、导航、侧栏、页脚 */
+            /* #divHead{display:none}
+            #divNav{display:none}
+            #divSide{display:none} */
+            #hot{display:none}
+            #news{width: 40%;}
+            #info{width: 60%;}
+        }
+    </style>
 <head>
 
 </head>
 
 <body>
+    <header>
+        <p>导航:选择城市/搜索小区/登录显示</p>
+    </header>
 
-    <h1>测试</h1>
+    <article>
+        <div id="news" class="f_l">
+            <p>邻里新闻/买房、卖房、租房（信息播放）</p>
+        </div>
+    
+        <div id="info" class="f_l">
+            <p>发布信息</p>
+        </div>
+
+        <div id="hot" class="f_l">
+            <p>天气信息/最热邻里</p>
+        </div>
+
+    </article>
+
+    <footer>
+        <p class="copyright">
+            <a href="#" title="" target="_blank">Copyright © 2013. All Rights Reserved by KnowledgeBase.Collect from</a>
+        </p>
+    </footer>
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
