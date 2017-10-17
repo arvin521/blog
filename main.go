@@ -11,7 +11,7 @@ func main() {
 
 	//设置访问的路由
 	http.HandleFunc("/", index)
-	// http.HandleFunc("/login", login)
+	http.HandleFunc("/llmain", llmain)
 
 	//设置监听的端口
 	err := http.ListenAndServe(":3389", nil)
@@ -27,7 +27,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		param := struct {
 			Title string
 		}{
-			Title: "Arvin",
+			Title: "邻里一家",
 		}
 
 		//t, _ := template.ParseFiles("template/index.html", "template/base.html")
@@ -38,7 +38,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
-	
+
 		type errType struct {
 			ErrorType int
 		}
@@ -46,6 +46,17 @@ func index(w http.ResponseWriter, r *http.Request) {
 		// t.Execute(w, nil)
 		t.Execute(w, tmp)
 	}
+}
+
+func llmain(w http.ResponseWriter, r *http.Request) {
+	param := struct {
+		Title string
+	}{
+		Title: "邻里主页",
+	}
+
+	t, _ := template.ParseFiles("template/ll_main.html")
+	t.Execute(w, param)
 }
 
 //------------------ 结束：路由函数 ------------------
