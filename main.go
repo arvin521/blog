@@ -11,6 +11,7 @@ func main() {
 
 	//设置访问的路由
 	http.HandleFunc("/", index)
+	http.HandleFunc("/login", login)
 	http.HandleFunc("/llmain", llmain)
 
 	//设置监听的端口
@@ -56,6 +57,17 @@ func llmain(w http.ResponseWriter, r *http.Request) {
 	}
 
 	t, _ := template.ParseFiles("template/ll_main.html")
+	t.Execute(w, param)
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	param := struct {
+		Title string
+	}{
+		Title: "邻里一家登录",
+	}
+
+	t, _ := template.ParseFiles("template/login.html")
 	t.Execute(w, param)
 }
 
