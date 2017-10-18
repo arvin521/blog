@@ -72,9 +72,10 @@ func login(w http.ResponseWriter, r *http.Request) {
 		t.Execute(w, param)
 	} else {
 		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
-		//请求的是登陆数据，那么执行登陆的逻辑判断
-		log.Println("username:", r.Form["username"])
-		log.Println("password:", r.Form["password"])
+		// log.Println("username:", r.Form["username"])
+		// log.Println("password:", r.Form["password"])
+		log.Println("username:", r.Form.Get("username"))
+		log.Println("password:", r.Form.Get("password"))
 	}
 }
 
