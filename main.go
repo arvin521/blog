@@ -61,30 +61,24 @@ func llmain(w http.ResponseWriter, r *http.Request) {
 }
 
 func login(w http.ResponseWriter, r *http.Request) {
-	param := struct {
-		Title string
-	}{
-		Title: "邻里一家登录",
-	}
+	if r.Method == "GET" {
+		param := struct {
+			Title string
+		}{
+			Title: "邻里一家登录",
+		}
 
-	t, _ := template.ParseFiles("template/login.html")
-	t.Execute(w, param)
+		t, _ := template.ParseFiles("template/login.html")
+		t.Execute(w, param)
+	} else {
+		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
+		//请求的是登陆数据，那么执行登陆的逻辑判断
+		log.Println("username:", r.Form["username"])
+		log.Println("password:", r.Form["password"])
+	}
 }
 
 //------------------ 结束：路由函数 ------------------
-
-// func login(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Println("method:", r.Method) //获取请求的方法
-// 	if r.Method == "GET" {
-// 		t, _ := template.ParseFiles("template/login.html")
-// 		t.Execute(w, nil)
-// 	} else {
-// 		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
-// 		//请求的是登陆数据，那么执行登陆的逻辑判断
-// 		fmt.Println("username:", r.Form["username"])
-// 		fmt.Println("password:", r.Form["password"])
-// 	}
-// }
 
 // func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 // 	if r.URL.Path == "/" {
