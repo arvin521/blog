@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery1.42.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/base_form.js" ></script>
+	</head>
+	<style type="text/css">
+		ul{list-style: none;}
+	</style>
+	<body>
+		<ul>
+			<li>
+				验证是否为空(不允许输入空格)
+				<form action="" method="post">
+					
+					<div id="">
+						<div id="">
+							<input type="text" class="input" value="" />
+					<input type="text" class="input" value="" />
+						</div>
+					</div>
+					
+					
+					<div id="">
+						<input type="button" class="tijiao"  name="" id="dd" value="提交" />
+					</div>
+					 
+				</form>
+				<script type="text/javascript">
+				$(function(){
+					$('.tijiao').cbInput('tijiao');
+					
+				}) 
+				</script>
+				
+			</li>
+			<li>
+				验证特定class中input的值是否为空
+				<form action="" method="post">
+					<input type="text" class="inpeeut" value="" />
+					<div id="">
+						<div id="">
+							<input type="text" class="inpeeut" value="" />
+						</div>
+					</div>
+					
+					<div id="">
+						<input type="button" class="tijiaoe" name="" id="" value="提交" />
+					</div>
+					
+				</form>
+				<script type="text/javascript">
+					$(function(){
+						/*验证特定class中input的值是否为空，如果为空则提示不能为空*/
+						$('.tijiaoe').cbNull('inpeeut','tijiaoe');
+					})
+				</script>
+			</li>
+			<li>
+				<p>作用：验证是否为数字，字母，大写字母，小写字母，及其是否在限制长度范围内</p>
+				<p>
+					数字：<input type="text" class="num" value="" /><span class="dd"></span><br />
+					字母：<input type="text" class="let" value="" /><br />
+					大写字母：<input type="text" class="cbLetBig" value="" /><br />
+					小写字母：<input type="text" class="cbLetSmall" value="" /><br />
+					不能有特殊字符只能由数字、大小写字母组成<input type="text" class="cbSpecialCharacter" /><br />
+					长度<input type="text" class="len" />
+					<script>
+						$(function(){
+							$('.num').cbNum();
+							$('.let').cbLet();
+							$('.cbLetBig').cbLetBig();
+							$('.cbLetSmall').cbLetSmall();
+							$('.cbSpecialCharacter').cbSpecialCharacter();
+							$('.len').cbLen(2,6);
+						})
+					</script>
+				</p>
+			</li>
+			<li>
+				<h3>.cbChina()、cbCard()、cbPhone()，cbEmail()</h3>
+				<p>作用：验证是否是中文，身份证号，电话号码，邮箱，如果不对则给出提示</p>
+				<p>
+					中文：<input type="text" class="china" value="" /><br />
+					身份证号码：<input type="text" class="card" value="" /><br />
+					电话号码：<input type="text" class="phone" value="" /><br />
+					邮箱：<input type="text" class="email" value="" /><br />
+					日期：<input type="text" class="time" value="" /><br />
+					
+					<script>
+						$(function(){
+							$('.china').cbChina();
+							$('.card').cbCard();
+							$('.phone').cbPhone();
+							$('.email').cbEmail();
+							$('.time').cbTime();
+						})
+					</script>
+				</p>
+			</li>
+			<li>
+				<!--自定义正则-->
+				keyup事件自定义的只能输入数字，非数字被替换成空格<input type="text" class="ziji" />
+				<script>
+					$(function(){
+						$('.ziji').cbFreeKeyup(
+							{
+								regExp:/^[0-9]$/g,
+								regExpNo:/[^\d]/g
+						});
+
+					})
+				</script>
+			</li>
+			<li>
+				<!--自定义正则-->
+				blur事件自定义的只能输入数字，如非按照要求输入则内容替换成msg中的内容<input type="text" class="blurshijian" />
+				<script>
+					$(function(){
+						$('.blurshijian').cbFreeBlur(
+							{
+								regExp:/^[0-9]$/,
+								msg:"只能输入数字！"
+						});
+
+					})
+				</script>
+			</li>
+		</ul>
+		<h2>使用方法</h2>
+		<ol>
+			<li>引入jq,在jq之后进行验证，页面一打开就执行代码！</li>
+			<li>
+				<h3>验证form表单内的所有input是否为空</h3>
+				<p>$('.tijiao').cbInput('tijiao');</p>
+				<p>两个自定义的名称都是提交按钮的class名称</p>
+			</li>
+			<li>
+				<h3>验证指定class是否为空</h3>
+				<p>$('.tijiaoe').cbNull('inpeeut','tijiaoe');</p>
+				<p>cbNull中第一个的名称是你需要验证的class的名称，第二个是提交按钮的class名称</p>
+			</li>
+			<li>
+				<h3>验证是否是数字，字母，大写字母····</h3>
+				<h4>这些对应的是键盘按下事件，当按下键盘就会执行</h4>
+				<p>$('.num').cbNum();
+							$('.let').cbLet();
+							$('.cbLetBig').cbLetBig();
+							$('.cbLetSmall').cbLetSmall();
+							$('.cbSpecialCharacter').cbSpecialCharacter();
+							$('.len').cbLen(2,6);</p>
+				<p>需要验证的class名称对应的方法！</p>
+				<p>最后一个.cbLen是限制输入长度的，需注意的是，第一个参数是最小个数，第二个是最大，当超过最大的时候多余的会被裁掉。最小限制暂为进行任何处理，但两个参数都必须要填，不然要报错！</p>
+			</li>
+			<li>
+				<h3>验证是否是中文，身份证号，电话号码，邮箱，如果不对则给出提示</h3>
+				<h4>这是失去焦点事件！</h4>
+				<p>.cbChina()、cbCard()、cbPhone()，cbEmail()</p>
+				<p>用法和上面相同，对应的class对应的方法</p>
+			</li>
+			<li>
+				<h3>自定义键盘验证事件</h3>
+				<p>$('.ziji').cbFreeKeyup(
+							{
+								regExp:/^[0-9]$/g,
+								regExpNo:/[^\d]/g
+						});</p>
+				<p>regExp：只能输入数字正则<br>regExpNo:只能输入除数字所有别的字符正则</p>
+			</li>
+			<li>
+				<h3>自定义失去焦点验证事件</h3>
+				<p>$('.blurshijian').cbFreeBlur(
+							{
+								regExp:/^[0-9]$/,
+								msg:"只能输入数字！"
+						});</p>
+				<p>regregExp：只能输入数字正则<br>msg:输入错误后的提示语句！</p>
+			</li>
+			<li>
+				<h3>备注：</h3>
+				<p>可多个方法连续调用!</p>
+				<p>如：$('.num').cbNum().cbLen(2,6);改含义为只能输入数字且数字的最多只能输入6个！</p>
+				<p>讨论群：490287349</p>
+			</li>
+		</ol>
+	</body>
+</html>
