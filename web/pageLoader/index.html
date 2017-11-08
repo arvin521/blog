@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <title>超轻量滚动简易加载</title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+        *{margin: 0;padding: 0}
+        body{background: #f2f2f2}
+        .box{width:96%;max-width: 500px;margin: 0 auto;padding: 2%;font-size:14px;}
+        .box-list{padding:30px 0;text-align: center;border: 1px solid #57bfa0;border-radius: 6px;width: 100%;margin-bottom: 3%;background: #fff}
+        .box-list i{margin: 0 5px;font-style: normal}
+        #more{text-align: center;margin: 1% 0;}
+    </style>
+</head>
+<script>
+    var offNo = true,//滚动开关
+        toff = false,//调试
+        isScroll = function (el) {//判断当前是否有滚动条
+            // 判断的目标
+            var elems = el ? [el] : [document.documentElement, document.body];
+            var scrollX = false, scrollY = false;
+            for (var i = 0; i < elems.length; i++) {
+                var o = elems[i];
+                //判断当前是否有水平滚动条
+                var sl = o.scrollLeft;
+                o.scrollLeft += (sl > 0) ? -1 : 1;
+                o.scrollLeft !== sl && (scrollX = scrollX || true);
+                o.scrollLeft = sl;
+                //判断当前是否有垂直滚动条
+                var st = o.scrollTop;
+                o.scrollTop += (st > 0) ? -1 : 1;
+                o.scrollTop !== st && (scrollY = scrollY || true);
+                o.scrollTop = st;
+            }
+            // ret
+            return {
+                scrollX: scrollX,
+                scrollY: scrollY
+            };
+        },
+        funScrol=function (x,datas,pos,fun){
+                if(!x){
+                    x = 10//底部fixed导航的高度;$(xxx).height();
+                }
+                if(isScroll().scrollY){//判断是否存在垂直滚动条
+                    $(document).scroll(function () {//滚动开始
+                        var t = $('body').scrollTop(),
+                            th = $(this).height();
+                        if(t > th-$(window).height()-x-10){//刚滚动至底部距离20PX时
+                            if(offNo){//判断滚动开关是否开启
+                                offNo=false;//关闭滚动开关
+                                if(toff){//是否开启调试模式
+                                    $.post(pos,datas,function (e) {//post请求
+                                        if (e) {//判断是否有返回
+                                            var html = '';//定义文档变量
+                                            var list = e.a || e.b;//存在多个值选取有的那个值
+                                            if(fun){//执行函数
+                                                fun(html,list);//参数传递
+                                            }
+                                            if (list.length <= 0) {//返回数据为空
+                                                alert('没有更多数据了');//弹窗提示
+                                                $('#more').text('已全部加载').removeAttr('data-id');//文字提示，删除页码
+                                                offNo=false//关闭滚动开关
+                                            }else{//有返回数据
+                                                offNo=true//打开滚动开关
+                                            }
+                                        } else {//请求失败
+                                            alert('已无新记录');//弹窗提示
+                                            $('#more').text('已全部加载').removeAttr('data-id');//文字提示，删除页码
+                                            offNo=false//关闭滚动开关
+                                        }
+                                    },'json');
+                                }else{//调试模式
+                                    if(fun){//函数
+                                        fun();
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }else{//没有滚动条就隐藏
+                    $('#more').hide();
+                }
+        };
+</script>
+<body>
+<div class="box">
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <div class="box-list">
+        第<i>0</i>条信息
+    </div>
+    <p id="more">正在加载···</p>
+</div>
+<script>
+    $(function () {
+        var num = 10;
+        funScrol('','','',function () {
+
+            var s = 0,b=10;
+
+            for(var i = 0; i < b;i++){
+
+                $('#more').before(' <div class="box-list">第<i>0</i>条信息</div>');
+
+            }
+
+            var l = $('.box-list i');
+
+            for(var i = 0; i < l.length;i++){
+
+                s++;
+
+                $(l[i]).text(s);
+
+            }
+
+            offNo=true;
+        })
+    })
+</script>
+</body>
+</html>

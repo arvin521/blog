@@ -11,7 +11,8 @@ func main() {
 
 	//设置访问的路由
 	http.HandleFunc("/", index)
-	// http.HandleFunc("/login", login)
+	http.HandleFunc("/login", login)
+	http.HandleFunc("/llmain", llmain)
 
 	//设置监听的端口
 	err := http.ListenAndServe(":80", nil)
@@ -27,7 +28,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		param := struct {
 			Title string
 		}{
-			Title: "Arvin",
+			Title: "邻里一家",
 		}
 
 		//t, _ := template.ParseFiles("template/index.html", "template/base.html")
@@ -38,7 +39,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println(err)
 		}
-	
+
 		type errType struct {
 			ErrorType int
 		}
@@ -48,20 +49,37 @@ func index(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//------------------ 结束：路由函数 ------------------
+func llmain(w http.ResponseWriter, r *http.Request) {
+	param := struct {
+		Title string
+	}{
+		Title: "邻里主页",
+	}
 
-// func login(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Println("method:", r.Method) //获取请求的方法
-// 	if r.Method == "GET" {
-// 		t, _ := template.ParseFiles("template/login.html")
-// 		t.Execute(w, nil)
-// 	} else {
-// 		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
-// 		//请求的是登陆数据，那么执行登陆的逻辑判断
-// 		fmt.Println("username:", r.Form["username"])
-// 		fmt.Println("password:", r.Form["password"])
-// 	}
-// }
+	t, _ := template.ParseFiles("template/ll_main.html")
+	t.Execute(w, param)
+}
+
+func login(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		param := struct {
+			Title string
+		}{
+			Title: "邻里一家登录",
+		}
+
+		t, _ := template.ParseFiles("template/login.html")
+		t.Execute(w, param)
+	} else {
+		r.ParseForm() //解析url传递的参数，对于POST则解析响应包的主体（request body）
+		// log.Println("username:", r.Form["username"])
+		// log.Println("password:", r.Form["password"])
+		log.Println("username:", r.Form.Get("username"))
+		log.Println("password:", r.Form.Get("password"))
+	}
+}
+
+//------------------ 结束：路由函数 ------------------
 
 // func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
 // 	if r.URL.Path == "/" {

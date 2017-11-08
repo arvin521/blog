@@ -40,19 +40,20 @@ footer{
 }
 
 /* ============== article内div ============== */
-#news{
+#show{
     position: relative;
-    width: 30%;
+    width: 100%;
     border: 1px solid blue;
 }
 
-#info{
+#link_nav{
     position: relative;
-    width: 40%;
+    width: 100%;
+    height: 10%;
     border: 1px solid green;
 }
 
-#hot{
+#info{
     position: relative;
     width: 30%;
     border: 1px solid yellow;

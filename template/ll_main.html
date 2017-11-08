@@ -9,20 +9,17 @@
 
     <title>{{.Title}}</title>    
 
-    <!-- <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="shortcut icon" href="/static/img/favicon.ico" />
     
     <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/ll_main.css">
 
     <style type="text/css"> 
         /* 在屏幕宽度小于960px的时候执行的样式 */
         @media(max-width:960px)
         {
             footer{display:none}
-            #hot{display:none}
-            #news{width: 40%;}
-            #info{width: 60%;}
         }
     </style>
 </head>
@@ -33,18 +30,17 @@
     </header>
 
     <article>
-        <div id="news" class="f_l">
-            <p>邻里新闻/买房、卖房、租房（信息播放）</p>
-        </div>
-    
-        <div id="info" class="f_l">
-            <p>发布信息</p>
+        <div id="show">
+            <p>图片轮播展示：买房、卖房、租房</p>
         </div>
 
-        <div id="hot" class="f_l">
-            <p>天气信息/最热邻里</p>
+        <div id="link_nav">
+            <p>链接：邻里新闻/邻里互助/邻里市场/邻里论坛/邻里投票/买房、卖房、租房/物业</p>
         </div>
 
+        <div id="info">
+            <p>标签导航：全部/邻里新闻/邻里论坛/邻里互助</p>
+        </div>
     </article>
 
     <footer>
@@ -54,11 +50,9 @@
     </footer>
 
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script>!window.jQuery && document.write('<script src="/static/js/lib/jquery.3.2.1.min.js"><\/script>');</script>
-    
-    <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <script src="/static/js/index.js"></script>
+    <script src="/static/js/ll_main.js"></script>
 </body>
 
 </html>
