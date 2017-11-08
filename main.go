@@ -14,7 +14,7 @@ func main() {
 	// http.HandleFunc("/login", login)
 
 	//设置监听的端口
-	err := http.ListenAndServe(":3389", nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
@@ -32,19 +32,20 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 		t, _ := template.ParseFiles("template/index.html", "template/base.html")
 		t.Execute(w, param)
-	}
+	    } else {
 
-	t, err := template.ParseFiles("template/404.html")
-	if err != nil {
-		log.Println(err)
-	}
+		t, err := template.ParseFiles("template/404.html")
+		if err != nil {
+		    log.Println(err)
+		}
 
-	type errType struct {
-		ErrorType int
-	}
-	tmp := errType{ErrorType: 404}
-	// t.Execute(w, nil)
-	t.Execute(w, tmp)
+		type errType struct {
+		    ErrorType int
+		}
+		tmp := errType{ErrorType: 404}
+		// t.Execute(w, nil)
+		t.Execute(w, tmp)
+	    }
 }
 
 //------------------ 结束：路由函数 ------------------
