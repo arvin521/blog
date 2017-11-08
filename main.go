@@ -14,7 +14,7 @@ func main() {
 	// http.HandleFunc("/login", login)
 
 	//设置监听的端口
-	err := http.ListenAndServe(":3389", nil)
+	err := http.ListenAndServe(":80", nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
